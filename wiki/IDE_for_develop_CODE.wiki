@@ -1,0 +1,9 @@
+#summary Configuration for CODE Developer
+#labels Phase-Implementation
+
+= Environment =
+
+   * Eclipse HELIOS
+   * Java Compiler 1.6.x or higher
+   * Subversion
+   * Windows Builder Pro. 
