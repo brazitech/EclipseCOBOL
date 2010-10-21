@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: FileTypes
+Bundle-Name: COBOL FileTypes
 Bundle-SymbolicName: CODE_FileTypes;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: biz.ritter.develop.cobol.filetypes.FileTypesPlugInActivator
