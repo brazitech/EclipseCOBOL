@@ -10,7 +10,7 @@ import org.eclipse.core.runtime.Status;
 import biz.ritter.develop.cobol.CorePlugInActivator;
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public class COBOLModelException extends CoreException {

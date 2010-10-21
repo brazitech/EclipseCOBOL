@@ -6,7 +6,7 @@ package biz.ritter.develop.cobol.core;
 import org.eclipse.core.runtime.IPath;
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public class COBOLCore {

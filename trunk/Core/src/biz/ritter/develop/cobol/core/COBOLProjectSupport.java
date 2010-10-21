@@ -18,7 +18,7 @@ import biz.ritter.develop.cobol.CODEConstants;
 import biz.ritter.develop.cobol.builder.AbstractIncrementalProjectBuilder;
 
 /**
- * @author Ritter
+ * @author Nerger
  * @see http://cvalcarcel.wordpress.com/2009/07/26/writing-an-eclipse-plug-in-part-4-create-a-custom-project-in-eclipse-new-project-wizard-the-behavior/
  */
 public class COBOLProjectSupport {

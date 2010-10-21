@@ -17,7 +17,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public class NewProjectPage extends WizardPage {

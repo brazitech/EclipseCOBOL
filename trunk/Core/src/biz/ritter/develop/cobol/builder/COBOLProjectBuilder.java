@@ -14,7 +14,7 @@ import org.eclipse.core.runtime.Status;
 
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {

@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.content.IContentDescription;
 import org.eclipse.core.runtime.content.ITextContentDescriber;
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public class ContentTypeDescriber implements ITextContentDescriber{

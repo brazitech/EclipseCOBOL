@@ -4,7 +4,7 @@
 package biz.ritter.develop.cobol;
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public interface CODEConstants {
