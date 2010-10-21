@@ -11,7 +11,7 @@ import biz.ritter.develop.cobol.CODEConstants;
 import biz.ritter.develop.cobol.builder.AbstractIncrementalProjectBuilder;
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public class ProjectNature implements IProjectNature {

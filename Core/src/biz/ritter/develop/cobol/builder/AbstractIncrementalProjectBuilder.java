@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public abstract class AbstractIncrementalProjectBuilder extends org.eclipse.core.resources.IncrementalProjectBuilder {

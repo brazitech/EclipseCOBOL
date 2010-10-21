@@ -22,7 +22,7 @@ import biz.ritter.develop.cobol.core.COBOLProjectSupport;
 
 
 /**
- * @author Ritter
+ * @author Nerger
  *
  */
 public class NewProject extends Wizard implements INewWizard, IExecutableExtension {
