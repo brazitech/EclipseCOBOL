@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="CODE_Feature"
-      label="CODE_Feature"
+      label="CODE"
       version="1.0.0.qualifier"
       provider-name="Sebastian Ritter">
 
@@ -20,13 +20,22 @@
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.team.core"/>
+      <import plugin="org.eclipse.core.resources"/>
    </requires>
 
    <plugin
          id="CODE_FileTypes"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="CODE_Core"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
 </feature>
