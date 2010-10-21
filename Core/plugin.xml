@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension 
+         id="CODE_Builder"
+         name="COBOL Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder 
+            callOnEmptyDelta="false"
+            hasNature="false"
+            isConfigurable="false">
+         <run 
+               class="biz.ritter.develop.cobol.builder.COBOLProjectBuilder">
+         </run>
+      </builder>
+   </extension>
+
+   <extension
+         id="CODENature"
+         name="COBOL Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="biz.ritter.develop.cobol.nature.ProjectNature">
+         </run>
+      </runtime>
+      <builder id="CODE_Core.CODE_Builder" />
+      <builder
+            id="org.eclipse.jdt.core.javabuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="category.COBOL"
+            name="COBOL">
+      </category>
+      <wizard
+            category="category.COBOL"
+            class="biz.ritter.develop.cobol.wizard.NewProject"
+            hasPages="true"
+            id="biz.ritter.develop.cobol.NewProjectWizard"
+            name="COBOL Project"
+            project="true">
+      </wizard>
+   </extension>
+
+</plugin>
