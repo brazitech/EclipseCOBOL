@@ -29,8 +29,6 @@ public class CorePlugInActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		COBOLProjectBuilder builder = new COBOLProjectBuilder();
-		builder.needRebuild();
 	}
 
 	/*

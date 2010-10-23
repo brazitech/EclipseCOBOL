@@ -10,7 +10,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Status;
 
 
 /**
@@ -23,7 +22,7 @@ public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
 	protected void startupOnInitialize() {
 		// TODO Check for exist COBOL compiler
 		super.startupOnInitialize();
-BuilderPlugInActivator.getDefault().getLog().log(new Status(Status.WARNING, BuilderPlugInActivator.PLUGIN_ID, "TODO in class COBOLProjectBuilder!"));		
+System.out.println(new Exception().getStackTrace()[0].getMethodName());
 	}
 	@Override
 	protected void clean(IProgressMonitor monitor) throws CoreException {
@@ -47,13 +46,14 @@ BuilderPlugInActivator.getDefault().getLog().log(new Status(Status.WARNING, Buil
 	protected boolean buildResource(IResource resource,
 			Map<String, String> args, IProgressMonitor monitor) {
 		// FIXME COBOL Source file types intend hard codes extensions
-BuilderPlugInActivator.getDefault().getLog().log(new Status(Status.WARNING, BuilderPlugInActivator.PLUGIN_ID, "TODO in class COBOLProjectBuilder!"));		
+		final String qualifiedPath = resource.getFullPath().toOSString();
 		if ("cbl".equals (resource.getFileExtension()) ||
 			"cob".equals (resource.getFileExtension())) {
-final String qualifiedPath = resource.getFullPath().toOSString();
 			System.out.println("call cobol compiler for "+qualifiedPath +" in ["+this.getClass().toString()+"]");
 		}
-
+		else {
+		  System.out.println("call NO cobol compiler for "+qualifiedPath +" in ["+this.getClass().toString()+"]");
+		}
 		
 		return true;
 	}

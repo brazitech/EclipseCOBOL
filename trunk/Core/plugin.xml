@@ -1,39 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension 
-         id="CODE_Builder"
-         name="COBOL Builder"
-         point="org.eclipse.core.resources.builders">
-      <builder 
-            callOnEmptyDelta="false"
-            hasNature="false"
-            isConfigurable="false">
-         <run 
-               class="biz.ritter.develop.cobol.builder.COBOLProjectBuilder">
-         </run>
+   <extension id="CODE_Builder" name="COBOL Builder" point="org.eclipse.core.resources.builders">
+      <builder hasNature="true">
+         <run class="biz.ritter.develop.cobol.builder.COBOLProjectBuilder" />
       </builder>
    </extension>
 
-   <extension
-         id="CODENature"
-         name="COBOL Nature"
-         point="org.eclipse.core.resources.natures">
+   <extension id="CODENature" name="COBOL Nature" point="org.eclipse.core.resources.natures">
       <runtime>
-         <run
-               class="biz.ritter.develop.cobol.nature.ProjectNature">
-         </run>
+         <run class="biz.ritter.develop.cobol.nature.ProjectNature" />
       </runtime>
       <builder id="CODE_Core.CODE_Builder" />
-      <builder
-            id="org.eclipse.jdt.core.javabuilder">
-      </builder>
    </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <category
-            id="category.COBOL"
-            name="COBOL">
+
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category id="category.COBOL" name="COBOL">
       </category>
       <wizard
             category="category.COBOL"
@@ -45,4 +28,42 @@
       </wizard>
    </extension>
 
+<!--
+   <extension point="org.eclipse.ui.ide.projectNatureImages">
+   			<image
+   			    icon="icons/l.gif"
+   			    natureId="com.lolcode.eclipselol.core.LOLCodeNature"
+   			    id="com.lolcode.eclipselol.core.LOLCodeNatureImage"/>
+   </extension>
+   <extension
+         id="lolCodeProblem"
+         name="LOLCode Compilation Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.lolcode.eclipselol.core.preferences.LOLCodePreferencePage"
+            id="com.lolcode.eclipselol.core.preferences.LOLCodePreferencePage"
+            name="LOLCode">
+      </page>
+      <page
+            category="com.lolcode.eclipselol.core.preferences.LOLCodePreferencePage"
+            class="com.lolcode.eclipselol.core.preferences.LanguagePreferencePage"
+            id="com.lolcode.eclipselol.core.preferences.LanguagePreferencePage"
+            name="Language">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+		<initializer class="com.lolcode.eclipselol.core.preferences.PreferenceInitializer"/> 
+   </extension>
+-->
 </plugin>
