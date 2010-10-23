@@ -21,5 +21,5 @@ public interface CODEConstants {
 	/**
 	 * Public ID for COBOL builder.
 	 */
-	public static final String CODE_BUILDER_ID = "CODE_Builder";
+	public static final String CODE_BUILDER_ID = CODE_CORE_ID + "." + "CODE_Builder";
 }
