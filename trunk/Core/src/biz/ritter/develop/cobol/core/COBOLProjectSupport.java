@@ -44,10 +44,10 @@ public class COBOLProjectSupport {
             String[] paths = { "src/cpy", "src/cbl" }; //$NON-NLS-1$ //$NON-NLS-2$
             addToProjectStructure(project, paths);
 
-            // add CODE Nature
-            addNature(project, CODEConstants.CODE_NATURE_ID);
             // add CODE Builder
-            addBuilder (project, CODEConstants.CODE_BUILDER_ID);
+            addBuilder (project, CODEConstants.CODE_FULLQUALIFIED_BUILDER_ID);
+            // add CODE Nature
+            addNature(project, CODEConstants.CODE_FULLQUALIFIED_NATURE_ID);
         } catch (CoreException e) {
             e.printStackTrace();
             project = null;
@@ -57,9 +57,10 @@ public class COBOLProjectSupport {
     }
  
     private static void addBuilder(IProject project, String codeBuilderId) throws CoreException{
-    	// Error builder missig only in project properties view viewable
-		AbstractIncrementalProjectBuilder.addBuilder(project, CODEConstants.CODE_BUILDER_ID, true, null);
+		System.out.println(new Exception().getStackTrace()[0].getMethodName());
+		AbstractIncrementalProjectBuilder.addBuilder(project, CODEConstants.CODE_FULLQUALIFIED_BUILDER_ID, true, null);
 	}
+
     
 	/**
      * Just do the basics: create a basic project.
@@ -130,9 +131,6 @@ public class COBOLProjectSupport {
             project.setDescription(description, IProject.AVOID_NATURE_CONFIG, monitor);
         }
     }
-
-    
-    
 }
 
 

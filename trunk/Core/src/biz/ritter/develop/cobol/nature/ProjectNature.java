@@ -17,7 +17,8 @@ import biz.ritter.develop.cobol.builder.AbstractIncrementalProjectBuilder;
 public class ProjectNature implements IProjectNature {
 	
 	private IProject cobolProject;
-
+	
+	
 	/**
 	 * 
 	 */
@@ -26,23 +27,26 @@ public class ProjectNature implements IProjectNature {
 
 	@Override
 	public void configure() throws CoreException {
-		AbstractIncrementalProjectBuilder.addBuilder(this.getProject(), CODEConstants.CODE_BUILDER_ID, true, null);
+		System.out.println(new Exception().getStackTrace()[0].getMethodName());
+		AbstractIncrementalProjectBuilder.addBuilder(this.getProject(), CODEConstants.CODE_FULLQUALIFIED_BUILDER_ID, true, null);
 	}
 
 	@Override
 	public void deconfigure() throws CoreException {
-		AbstractIncrementalProjectBuilder.removeBuilder(this.getProject(), CODEConstants.CODE_BUILDER_ID, true, null);
+		System.out.println(new Exception().getStackTrace()[0].getMethodName());
+		AbstractIncrementalProjectBuilder.removeBuilder(this.getProject(), CODEConstants.CODE_FULLQUALIFIED_BUILDER_ID, true, null);
 	}
 
 	@Override
 	public IProject getProject() {
+		System.out.println(new Exception().getStackTrace()[0].getMethodName());
 		return this.cobolProject;
 	}
 
 	@Override
 	public void setProject (final IProject project) {
+		System.out.println(new Exception().getStackTrace()[0].getMethodName());
 		this.cobolProject = project;
-		
 	}
-	
+
 }

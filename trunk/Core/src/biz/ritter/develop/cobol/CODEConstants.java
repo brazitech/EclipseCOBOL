@@ -12,7 +12,7 @@ public interface CODEConstants {
 	/**
 	 * Public ID for COBOL nature.
 	 */
-	public static final String CODE_NATURE_ID = "CODENature";
+	public static final String CODE_FULLQUALIFIED_NATURE_ID = CODEConstants.CODE_CORE_ID + "." + "CODENature";
 	/**
 	 * Public plugin ID for COBOL core plugin.
 	 */
@@ -21,5 +21,5 @@ public interface CODEConstants {
 	/**
 	 * Public ID for COBOL builder.
 	 */
-	public static final String CODE_BUILDER_ID = CODE_CORE_ID + "." + "CODE_Builder";
+	public static final String CODE_FULLQUALIFIED_BUILDER_ID = CODE_CORE_ID + "." + "CODE_Builder";
 }
