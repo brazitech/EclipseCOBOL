@@ -52,6 +52,7 @@ public class NewProject extends Wizard implements INewWizard, IExecutableExtensi
 	
 	@Override
 	public boolean performFinish() {
+		System.out.println(new Exception().getStackTrace()[0].getMethodName());
 		try {
 			// create a new COBOL project...
 			final NewProjectPage newProjectPage = (NewProjectPage)this.pages.get(0);
