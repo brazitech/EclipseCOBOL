@@ -7,4 +7,3 @@
    * Java Compiler 1.6.x or higher
    * Subversion
    * Windows Builder Pro. 
-   * Xtext Framework
