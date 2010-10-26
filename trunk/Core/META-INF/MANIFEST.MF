@@ -8,7 +8,7 @@ Bundle-Vendor: Sebastian Nerger
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- CODE_FileTypes;bundle-version="1.0.0";resolution:=optional
+ CODE_FileTypes;bundle-version="1.0.0";resolution:=optional;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: biz.ritter.develop.cobol,

@@ -19,24 +19,22 @@
  */
 package biz.ritter.develop.cobol.core;
 
-import org.eclipse.core.runtime.IPath;
-
 /**
+ * Class Factory for create {@link COBOLLanguage} instance.
  * @author Nerger
- * 
+ *
  */
-public class COBOLCore {
+public class COBOLLanguageFactory {
   
-  public static final String COBCPY = "COBCPY";
-  
-  public static void setCOBCPYVariable(final String variableName,
-      final IPath path) throws COBOLModelException {
-    
+  private static COBOLLanguage defaultInstance;
+  public synchronized static COBOLLanguage getDefaultCOBOLLanguageImpl () {
+    if (null == defaultInstance) {
+      defaultInstance = new COBOL85LanguageImpl();
+    }
+    return defaultInstance;
   }
   
-  public static void removeCOBCPYVariable(final String variableName)
-      throws COBOLModelException {
-    
+  public static COBOLDialectDescriptor [] getSupportedDialects () {
+    return new COBOLDialectDescriptor [] {COBOL85LanguageImpl.createCOBOL85LanguageImpl().getDialectInformations()};
   }
-  
 }
