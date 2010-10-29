@@ -51,7 +51,21 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
          id="CODE_Core"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.1.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="CODE_Editors"
+         download-size="0"
+         install-size="0"
+         version="0.1.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="SimpleIDE"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
    <data
