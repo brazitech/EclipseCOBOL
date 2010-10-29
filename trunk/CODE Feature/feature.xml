@@ -54,20 +54,6 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
          version="0.1.0.qualifier"
          unpack="false"/>
 
-   <plugin
-         id="CODE_Editors"
-         download-size="0"
-         install-size="0"
-         version="0.1.0.qualifier"
-         unpack="false"/>
-
-   <plugin
-         id="SimpleIDE"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
    <data
          id="license/EUPL.de.pdf"
          download-size="0"
