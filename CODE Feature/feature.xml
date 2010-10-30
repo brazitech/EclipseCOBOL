@@ -2,7 +2,7 @@
 <feature
       id="CODE_Feature"
       label="CODE"
-      version="1.0.0.qualifier"
+      version="0.1.0.qualifier"
       provider-name="Sebastian Nerger">
 
    <description url="http://code.google.com/a/eclipselabs.org/p/code/">
@@ -33,11 +33,18 @@ Die sprachspezifischen Genehmigungen und Beschränkungen
 unter der Lizenz sind dem Lizenztext zu entnehmen.
    </license>
 
+   <url>
+      <update label="CODE @ EclipseLabs" url="http://code.google.com/a/eclipselabs.org/p/code/"/>
+      <discovery label="CODE @ Eclipse Labs" url="http://code.google.com/a/eclipselabs.org/p/code/"/>
+   </url>
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.team.core"/>
       <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.editors"/>
    </requires>
 
    <plugin
@@ -49,6 +56,13 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
 
    <plugin
          id="CODE_Core"
+         download-size="0"
+         install-size="0"
+         version="0.1.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="CODE_Editors"
          download-size="0"
          install-size="0"
          version="0.1.0.qualifier"
