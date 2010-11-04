@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: COBOL Core
 Bundle-SymbolicName: CODE_Core;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: biz.ritter.develop.cobol.CorePlugInActivator
 Bundle-Vendor: Sebastian Nerger
 Require-Bundle: org.eclipse.ui,
@@ -11,6 +11,6 @@ Require-Bundle: org.eclipse.ui,
  CODE_FileTypes;bundle-version="1.0.0";resolution:=optional;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: biz.ritter.develop.cobol,
- biz.ritter.develop.cobol.builder,
- biz.ritter.develop.cobol.core
+Export-Package: biz.ritter.develop.cobol;uses:="org.eclipse.ui.plugin,org.osgi.framework",
+ biz.ritter.develop.cobol.builder;uses:="org.eclipse.core.runtime,org.eclipse.core.resources",
+ biz.ritter.develop.cobol.core;uses:="org.eclipse.core.runtime,org.eclipse.core.resources"

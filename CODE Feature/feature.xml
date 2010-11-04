@@ -2,7 +2,7 @@
 <feature
       id="CODE_Feature"
       label="CODE"
-      version="0.1.0.qualifier"
+      version="0.1.1.qualifier"
       provider-name="Sebastian Nerger">
 
    <description url="http://code.google.com/a/eclipselabs.org/p/code/">
@@ -34,7 +34,7 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
    </license>
 
    <url>
-      <update label="CODE @ EclipseLabs" url="http://code.google.com/a/eclipselabs.org/p/code/"/>
+      <update label="CODE @ EclipseLabs" url="http://svn.codespot.com/a/eclipselabs.org/code/trunk/UpdateSite/"/>
       <discovery label="CODE @ Eclipse Labs" url="http://code.google.com/a/eclipselabs.org/p/code/"/>
    </url>
 
@@ -58,14 +58,14 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
          id="CODE_Core"
          download-size="0"
          install-size="0"
-         version="0.1.0.qualifier"
+         version="0.2.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="CODE_Editors"
          download-size="0"
          install-size="0"
-         version="0.1.0.qualifier"
+         version="0.1.1.qualifier"
          unpack="false"/>
 
    <data

@@ -28,13 +28,26 @@
       </wizard>
    </extension>
 
-<!--
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="biz.ritter.develop.cobol.prefs.COBOLPreferencePage"
+            id="biz.ritter.develop.cobol.prefs.COBOLPreferencePage"
+            name="COBOL Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="biz.ritter.develop.cobol.prefs.COBOLPreferenceInitializer">
+      </initializer>
+   </extension>
+
    <extension point="org.eclipse.ui.ide.projectNatureImages">
    			<image
-   			    icon="icons/l.gif"
-   			    natureId="com.lolcode.eclipselol.core.LOLCodeNature"
-   			    id="com.lolcode.eclipselol.core.LOLCodeNatureImage"/>
+   			    icon="icons/nature.cobol.16.16.png"
+   			    natureId="CODE_Core.CODENature"
+   			    id="CODENatureImage"/>
    </extension>
--->
 
 </plugin>
