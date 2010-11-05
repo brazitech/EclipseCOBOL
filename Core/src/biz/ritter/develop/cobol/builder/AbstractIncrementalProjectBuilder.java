@@ -50,7 +50,6 @@ public abstract class AbstractIncrementalProjectBuilder extends
   @Override
   protected IProject[] build(final int kind, final Map args,
       final IProgressMonitor monitor) throws CoreException {
-    System.out.println(new Exception().getStackTrace()[0].getMethodName());
     final IProject project = getProject();
     switch (kind) {
     case FULL_BUILD:
@@ -81,8 +80,11 @@ public abstract class AbstractIncrementalProjectBuilder extends
   protected abstract IProject[] obtainInterestingProjects(int kind,
       Map<String, String> args);
   
-  protected abstract boolean buildResourceDelta(IResourceDelta delta, int kind,
-      Map<String, String> args, IProgressMonitor monitor);
+  protected boolean buildResourceDelta(IResourceDelta delta, int kind,
+      Map<String, String> args, IProgressMonitor monitor) {
+    final IResource resource = delta.getResource();
+    return this.buildResource(resource, args, monitor);
+  }
   
   protected abstract boolean buildResource(IResource resource,
       Map<String, String> args, IProgressMonitor monitor);
@@ -90,7 +92,6 @@ public abstract class AbstractIncrementalProjectBuilder extends
   public static void addBuilder(final IProject project, final String builderID,
       final boolean before, final IProgressMonitor monitor)
       throws CoreException {
-    System.out.println(new Exception().getStackTrace()[0].getMethodName());
     final IProjectDescription desc = project.getDescription();
     // Check builder added some times before?
     for (ICommand builder : desc.getBuildSpec()) {
@@ -117,7 +118,6 @@ public abstract class AbstractIncrementalProjectBuilder extends
   public static void removeBuilder(final IProject project,
       final String builderID, final boolean before,
       final IProgressMonitor monitor) throws CoreException {
-    System.out.println(new Exception().getStackTrace()[0].getMethodName());
     final IProjectDescription desc = project.getDescription();
     final ICommand[] commands = new ICommand[desc.getBuildSpec().length - 1];
     int pos = -1;
