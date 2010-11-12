@@ -31,6 +31,7 @@
       </win>
    </launcher>
 
+
    <vm>
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</linux>
       <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
@@ -56,6 +57,7 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
    </license>
 
    <plugins>
+      <plugin id="CODE_Branding"/>
       <plugin id="CODE_Core"/>
       <plugin id="CODE_Editors"/>
       <plugin id="CODE_FileTypes"/>
