@@ -2,8 +2,9 @@
 <feature
       id="CODE_Feature"
       label="CODE"
-      version="0.1.1.qualifier"
-      provider-name="Sebastian Nerger">
+      version="0.1.2.qualifier"
+      provider-name="Sebastian Nerger"
+      plugin="CODE_Branding">
 
    <description url="http://code.google.com/a/eclipselabs.org/p/code/">
       COBOL Developer Environment [CODE] provides an Eclipse
@@ -11,19 +12,15 @@ based IDE System.
    </description>
 
    <copyright url="http://www.example.com/copyright">
-      Copyright © 2010, Sebastian Nerger
+      Copyright © 2010, Sebastian Nerger, Sebastian Ritter
    </copyright>
 
    <license url="http://ec.europa.eu/idabc/eupl5">
-      Copyright 2010 Sebastian Nerger
-
-Lizenziert unter der EUPL, nur Version 1.1 (&quot;Lizenz&quot;);
+      Lizenziert unter der EUPL, nur Version 1.1 (&quot;Lizenz&quot;);
 Sie dürfen dieses Werk ausschließlich gemäß
 dieser Lizenz nutzen.
 Eine Kopie der Lizenz finden Sie hier:
-
 http://ec.europa.eu/idabc/eupl5
-
 Sofern nicht durch anwendbare Rechtsvorschriften
 gefordert oder in schriftlicher Form vereinbart, wird
 die unter der Lizenz verbreitete Software &quot;so wie sie
@@ -45,6 +42,9 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.core.variables"/>
    </requires>
 
    <plugin
@@ -66,6 +66,13 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
          download-size="0"
          install-size="0"
          version="0.1.1.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="CODE_Branding"
+         download-size="0"
+         install-size="0"
+         version="0.1.0.qualifier"
          unpack="false"/>
 
    <data
