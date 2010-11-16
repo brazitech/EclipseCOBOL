@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/CODE_Feature_0.1.1.201011041009.jar" id="CODE_Feature" version="0.1.1.201011041009">
+   <feature url="features/CODE_Feature_0.1.2.201011161556.jar" id="CODE_Feature" version="0.1.2.201011161556">
       <category name="code.ide"/>
    </feature>
    <category-def name="code.ide" label="COBOL">

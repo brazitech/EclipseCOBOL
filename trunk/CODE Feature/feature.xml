@@ -15,7 +15,7 @@ based IDE System.
       Copyright © 2010, Sebastian Nerger, Sebastian Ritter
    </copyright>
 
-   <license url="http://ec.europa.eu/idabc/eupl5">
+   <license url="http://ec.europa.eu/idabc/eupl.html">
       Lizenziert unter der EUPL, nur Version 1.1 (&quot;Lizenz&quot;);
 Sie dürfen dieses Werk ausschließlich gemäß
 dieser Lizenz nutzen.
@@ -58,7 +58,7 @@ unter der Lizenz sind dem Lizenztext zu entnehmen.
          id="CODE_Core"
          download-size="0"
          install-size="0"
-         version="0.2.0.qualifier"
+         version="0.3.0.qualifier"
          unpack="false"/>
 
    <plugin

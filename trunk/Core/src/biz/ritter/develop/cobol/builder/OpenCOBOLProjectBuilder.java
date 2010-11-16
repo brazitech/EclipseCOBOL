@@ -24,7 +24,6 @@ import biz.ritter.develop.cobol.prefs.COBOLPreferenceConstants;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
@@ -32,25 +31,39 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 /**
+ * Compiles project with OpenCOBOL compiler.
  * @author Nerger
- * 
  */
-public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
+public class OpenCOBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
   
   protected String fullQualifiedCobolCompilerExecutable = null;
   protected String cobolCompilerPath = null;
+  protected MessageConsoleStream out;
+  protected MessageConsole compilerConsole;
+
+  protected void createOutputStream () {
+    compilerConsole = new MessageConsole("OpenCOBOL Compiler", null);
+    ConsolePlugin.getDefault().getConsoleManager().addConsoles(new IConsole [] {compilerConsole});
+    out = compilerConsole.newMessageStream();
+  }
   
   @Override
   protected void startupOnInitialize() {
     super.startupOnInitialize();
     try {
+      this.createOutputStream();
       String[] natures = this.getProject().getDescription().getNatureIds();
       for (String nature : natures) {
-        System.out.println("  Nature: " + nature);
         IStatus natureStatus = ResourcesPlugin.getWorkspace()
             .validateNatureSet(new String[] { nature });
         
@@ -59,19 +72,19 @@ public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
           
         }
         else {
-          System.out.println("BULLSHIT");
+          out.println("BULLSHIT");
         }
       }
     }
     catch (CoreException shit) {
-      System.err.println(shit.getLocalizedMessage());
+      out.println(shit.getLocalizedMessage());
     }
   }
   
   @Override
   protected void clean(IProgressMonitor monitor) throws CoreException {
     // TODO Auto-generated method stub
-    System.out.println(new Exception().getStackTrace()[0].getMethodName());
+    out.println(new Exception().getStackTrace()[0].getMethodName());
     super.clean(monitor);
   }
   
@@ -79,14 +92,17 @@ public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
   protected IProject[] obtainInterestingProjects(int kind,
       Map<String, String> args) {
     // TODO Auto-generated method stub
-    System.out.println(new Exception().getStackTrace()[0].getMethodName());
+    if (CorePlugInActivator.getDefault().isDebugging())
+      System.out.println(new Exception().getStackTrace()[0].getMethodName());
     return null;
   }
   
   @Override
   protected boolean buildResource(IResource resource, Map<String, String> args,
       IProgressMonitor monitor) {
+    
     // TODO Check for exist COBOL compiler
+    //out.setColor(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
     
     if (null == this.fullQualifiedCobolCompilerExecutable) {
       this.fullQualifiedCobolCompilerExecutable = 
@@ -101,7 +117,11 @@ public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
     if ("cbl".equals(resource.getFileExtension())
         || "cob".equals(resource.getFileExtension())) {
       try {
-        ProcessBuilder pb = new ProcessBuilder(fullQualifiedCobolCompilerExecutable, "", qualifiedPath);
+        final IPath binS = this.getProject().getLocation().append("/bin/s");
+        binS.toFile().mkdirs();
+        ProcessBuilder pb = new ProcessBuilder(fullQualifiedCobolCompilerExecutable, 
+            "-S", qualifiedPath, 
+            "-o", binS.append(resource.getName().substring(0,resource.getName().indexOf(resource.getFileExtension())-1)+".s").toOSString() );
         Map<String, String> env = pb.environment();
         env.put("COBCPY", "HERE");
         env.put("PATH", env.get("PATH")+File.pathSeparatorChar+this.cobolCompilerPath);
@@ -111,7 +131,8 @@ public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
         BufferedReader compilerErrorOutput = new BufferedReader (new InputStreamReader(p.getErrorStream()));
         final StringBuilder normalOutput = new StringBuilder();
         final StringBuilder errorOutput = new StringBuilder();
-        final int RC = p.exitValue();
+        int RC = p.waitFor();
+        //RC = p.exitValue();
         String s;
         while ((s = compilerNormalOutput.readLine()) != null) {
           normalOutput.append(s);
@@ -120,21 +141,27 @@ public class COBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
           errorOutput.append(s).append(System.getProperty("line.separator"));
         }
         if (0 == RC) {
-          System.out.println(normalOutput.toString());
+          final String errorLogMessageText = "Compile OK: "
+                                           + qualifiedPath
+                                           + System.getProperty("line.separator")
+                                           + normalOutput.toString().trim();
+          //out.setColor(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN));
+          out.println(errorLogMessageText);
         }
         else {
-          System.err.println(errorOutput.toString());
+          //out.setColor(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+          out.println(errorOutput.toString());
         }
-        
       }
-      catch (IOException shit) {
-        System.out.println("cannot call cobol compiler for " + qualifiedPath + " in ["+ this.getClass().toString() + "]");
+      catch (Exception shit) {
+        CorePlugInActivator.getDefault().getLog().log(new Status(IStatus.ERROR, CorePlugInActivator.PLUGIN_ID, "cannot call cobol compiler for " + qualifiedPath , shit));
+        this.fullQualifiedCobolCompilerExecutable = null;
         shit.printStackTrace();
       }
     }
     else {
       // Nothing to do
-      //System.out.println("call NO cobol compiler for " + qualifiedPath + " in [" + this.getClass().toString() + "]");
+      // System.out.println("call NO cobol compiler for " + qualifiedPath + " in [" + this.getClass().toString() + "]");
     }
     
     return true;

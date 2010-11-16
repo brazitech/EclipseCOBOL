@@ -3,7 +3,7 @@
 <plugin>
    <extension id="CODE_Builder" name="COBOL Builder" point="org.eclipse.core.resources.builders">
       <builder hasNature="true">
-         <run class="biz.ritter.develop.cobol.builder.COBOLProjectBuilder" />
+         <run class="biz.ritter.develop.cobol.builder.OpenCOBOLProjectBuilder" />
       </builder>
    </extension>
 
@@ -30,10 +30,22 @@
 
    <extension
          point="org.eclipse.ui.preferencePages">
+      <page 
+            class="biz.ritter.develop.cobol.prefs.COBOLBuildPathPreferencePage"
+            id="prefs.COBOLBuildPath"
+            name="BuildPath"
+            category="prefs.COBOL">
+      </page>
+      <page
+            class="biz.ritter.develop.cobol.prefs.COBOLCompilerPreferencePage"
+            id="prefs.COBOLCompiler"
+            name="Compiler"
+            category="prefs.COBOL">
+      </page>
       <page
             class="biz.ritter.develop.cobol.prefs.COBOLPreferencePage"
-            id="biz.ritter.develop.cobol.prefs.COBOLPreferencePage"
-            name="COBOL Preferences">
+            id="prefs.COBOL"
+            name="COBOL">
       </page>
    </extension>
    <extension
