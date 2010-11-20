@@ -34,6 +34,11 @@ public class COBOLPreferenceConstants {
    */
 	public static final String CODE_PREF_COBOL_COMPILER_EXECUTABLE = "codeCompilerExec";
 
+  /**
+   * Constant for COBOL compiler executable name
+   */
+  public static final String CODE_PREF_COBOL_COMPILER_PARAMETERS = "-S";
+
 	/**
 	 * Constant for COBCPY environment
 	 */

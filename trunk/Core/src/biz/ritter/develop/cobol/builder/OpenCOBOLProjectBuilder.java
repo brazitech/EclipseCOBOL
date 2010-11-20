@@ -117,16 +117,35 @@ public class OpenCOBOLProjectBuilder extends AbstractIncrementalProjectBuilder {
     if ("cbl".equals(resource.getFileExtension())
         || "cob".equals(resource.getFileExtension())) {
       try {
-        final IPath binS = this.getProject().getLocation().append("/bin/s");
-        binS.toFile().mkdirs();
-        ProcessBuilder pb = new ProcessBuilder(fullQualifiedCobolCompilerExecutable, 
-            "-S", qualifiedPath, 
-            "-o", binS.append(resource.getName().substring(0,resource.getName().indexOf(resource.getFileExtension())-1)+".s").toOSString() );
+        final IPath bin = this.getProject().getLocation().append("/bin");
+        bin.toFile().mkdirs();
+        String params = CorePlugInActivator.getDefault().getPreferenceStore().getString(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_PARAMETERS);
+        
+        ProcessBuilder pb = null;
+        if (null == params || 0 == params.trim().length()) {
+          params = "-S";
+          CorePlugInActivator.getDefault().getPreferenceStore().setDefault(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_PARAMETERS,params);          
+          pb = new ProcessBuilder(
+              fullQualifiedCobolCompilerExecutable, 
+              params, 
+              qualifiedPath,  
+              "-o", bin.append(resource.getName().substring(0,resource.getName().indexOf(resource.getFileExtension())-1)+".s").toOSString() );
+        }
+        else {
+          pb = new ProcessBuilder(
+              fullQualifiedCobolCompilerExecutable, 
+              params, 
+              qualifiedPath
+          );
+        }
+
         Map<String, String> env = pb.environment();
-        env.put("COBCPY", "HERE");
+        final String cobcpy = this.getProject().getLocation().append("src").append("cpy").toOSString(); 
+        env.put("COBCPY", env.get("COBCPY")+File.pathSeparatorChar+cobcpy);
         env.put("PATH", env.get("PATH")+File.pathSeparatorChar+this.cobolCompilerPath);
         pb.directory(new File(this.cobolCompilerPath));
         Process p = pb.start();
+
         BufferedReader compilerNormalOutput = new BufferedReader (new InputStreamReader(p.getInputStream()));
         BufferedReader compilerErrorOutput = new BufferedReader (new InputStreamReader(p.getErrorStream()));
         final StringBuilder normalOutput = new StringBuilder();

@@ -8,7 +8,7 @@
             extensions="cbl"
             icon="icons/source.cbl.16.16.png"
             id="biz.ritter.develop.cobol.editor.CblEditor"
-            name="COBOL Source">
+            name="COBOL Editor">
       </editor>
    </extension>
   <extension
