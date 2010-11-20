@@ -61,11 +61,16 @@ public class COBOLPreferencePage
 		addField(new DirectoryFieldEditor(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_PATH, 
 				"COBOL compiler &directory", getFieldEditorParent()));
 		{
-		  StringFieldEditor stringFieldEditor = new StringFieldEditor(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_EXECUTABLE, "COBOL &compiler name", getFieldEditorParent());
-		  stringFieldEditor.setEmptyStringAllowed(false);
+		  StringFieldEditor cobolCompilerNameStringFieldEditor = new StringFieldEditor(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_EXECUTABLE, "COBOL &compiler name", getFieldEditorParent());
+		  cobolCompilerNameStringFieldEditor.setEmptyStringAllowed(false);
 		  addField(
-		  	stringFieldEditor);
+		  	cobolCompilerNameStringFieldEditor);
 		}
+	  {
+	    StringFieldEditor cobolCompilerParameterStringFieldEditor = new StringFieldEditor(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_PARAMETERS, "COBOL compiler &parameter", -1, StringFieldEditor.VALIDATE_ON_KEY_STROKE, getFieldEditorParent());
+	    cobolCompilerParameterStringFieldEditor.setEmptyStringAllowed(false);
+	    addField(cobolCompilerParameterStringFieldEditor);
+	  }
 	}
 
 	/* (non-Javadoc)

@@ -38,6 +38,7 @@ public class COBOLPreferenceInitializer extends AbstractPreferenceInitializer {
 		IPreferenceStore store = CorePlugInActivator.getDefault().getPreferenceStore();
 		store.setDefault(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_PATH, "g:/MinGW/bin");
 		store.setDefault(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_EXECUTABLE, "cobc");
+		store.setDefault(COBOLPreferenceConstants.CODE_PREF_COBOL_COMPILER_PARAMETERS, "-S");
 	}
 
 }

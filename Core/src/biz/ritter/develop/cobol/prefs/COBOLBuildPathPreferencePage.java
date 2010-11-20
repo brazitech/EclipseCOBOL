@@ -21,16 +21,18 @@ package biz.ritter.develop.cobol.prefs;
 
 import biz.ritter.develop.cobol.CorePlugInActivator;
 
+import java.util.HashMap;
+
 import org.eclipse.jface.preference.*;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 /**
  * This class represents a preference page that
@@ -49,7 +51,14 @@ import org.eclipse.swt.layout.GridData;
 public class COBOLBuildPathPreferencePage
 	extends PreferencePage
 	implements IWorkbenchPreferencePage {
-
+  
+  private EnvSelectionAdapter buttonSelectionListener = new EnvSelectionAdapter();
+  private static final int TODO_NEW_ENV = 1;
+  private static final int TODO_EDIT_ENV = 2;
+  private static final int TODO_REMOVE_ENV = 4;
+  private List envList;
+  private HashMap<String,String> cobEnv = new HashMap<String, String>();
+  
 	public COBOLBuildPathPreferencePage() {
 		super();
 		setMessage("COBOL Build Path");
@@ -57,6 +66,7 @@ public class COBOLBuildPathPreferencePage
 		setPreferenceStore(CorePlugInActivator.getDefault().getPreferenceStore());
 		setDescription("Define COBOL build paths and environment.");
 	}
+	
 	
 	/**
 	 * Creates the field editors. Field editors are abstractions of
@@ -77,29 +87,78 @@ public class COBOLBuildPathPreferencePage
   protected Control createContents(Composite parent) {
     // TODO Auto-generated method stub
     Composite pane = new Composite(parent,SWT.BORDER_SOLID);
-    RowLayout rl_pane = new RowLayout(SWT.HORIZONTAL);
-    rl_pane.fill = true;
-    pane.setLayout(rl_pane);
+    pane.setLayout(null);
     
-    Composite composite_1 = new Composite(pane, SWT.NONE);
-    RowLayout rl_composite_1 = new RowLayout(SWT.HORIZONTAL);
-    rl_composite_1.fill = true;
-    composite_1.setLayout(rl_composite_1);
+    Composite composite_list = new Composite(pane, SWT.NONE);
+    composite_list.setBounds(0, 0, 182, 320);
+    composite_list.setLayout(null);
+    
+    envList = new List(composite_list, SWT.BORDER);
+    envList.setItems(new String[] {"abc", "def"});
+    envList.setBounds(5, 5, 172, 310);
+    if (envList.getItemCount()>0) {
+      envList.select(0);
+    }
     
     Composite composite = new Composite(pane, SWT.NONE);
-    composite.setLayout(new GridLayout(1, true));
+    composite.setBounds(182, 0, 183, 320);
+    composite.setLayout(null);
     
-    Button button = new Button(composite, SWT.NONE);
-    button.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-    button.setText("&New");
+    Button button_NewEnv = new Button(composite, SWT.NONE);
+    button_NewEnv.addSelectionListener(this.buttonSelectionListener);
+    button_NewEnv.setBounds(5, 5, 55, 25);
+    button_NewEnv.setText("&New");
+    button_NewEnv.setData("todo", TODO_NEW_ENV);
     
-    Button button_1 = new Button(composite, SWT.NONE);
-    button_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-    button_1.setText("&Edit");
+    Button button_EditEnv = new Button(composite, SWT.NONE);
+    button_EditEnv.addSelectionListener(this.buttonSelectionListener);
+    button_EditEnv.setBounds(5, 35, 55, 25);
+    button_EditEnv.setText("&Edit");
+    button_EditEnv.setData("todo", TODO_EDIT_ENV);
     
-    Button button_2 = new Button(composite, SWT.NONE);
-    button_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-    button_2.setText("&Remove");
+    Button button_RemoveEnv = new Button(composite, SWT.NONE);
+    button_RemoveEnv.addSelectionListener(this.buttonSelectionListener);
+    button_RemoveEnv.setBounds(5, 65, 55, 25);
+    button_RemoveEnv.setText("&Remove");
+    button_RemoveEnv.setData("todo", TODO_REMOVE_ENV);
+
     return pane;
+  }
+  
+  private void doEdit () {
+    final String selected = this.envList.getItem(this.envList.getSelectionIndex());
+    
+  }
+  private void doNew () {
+    
+  }
+  
+  private void doRemove () {
+    final String selected = this.envList.getItem(this.envList.getSelectionIndex());
+  }
+  
+  private static class EnvSelectionAdapter extends SelectionAdapter {
+    @Override
+    public void widgetSelected(SelectionEvent e) {
+      if (null != e.getSource() && e.getSource() instanceof Button) {
+        Object todo = ((Button)e.getSource()).getData("todo");
+        if (null == todo) todo = new Integer(-1);
+        switch (todo.hashCode()) {
+        case TODO_EDIT_ENV :
+          System.out.println("EDIT");
+          break;
+        case TODO_NEW_ENV :
+          System.out.println("NEW");
+          break;
+        case TODO_REMOVE_ENV :
+          System.out.println("REMOVE");
+          break;
+        default:
+        }
+      }
+      else {
+        super.widgetSelected(e);
+      }
+   }
   }
 }
